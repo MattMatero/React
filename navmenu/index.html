@@ -1,0 +1,52 @@
+<html>
+<head><title></title>
+<link rel="stylesheet" href="style.css" />
+<script src="http://fb.me/react-0.13.1.js"></script>
+<script src="http://fb.me/JSXTransformer-0.13.1.js"></script>
+</head>
+<script type="text/jsx">
+
+
+var Menu = React.createClass({
+
+getInitialState: function(){
+    return {focused:0}
+},
+
+clicked: function(index){
+    this.setState({focused: index});
+},
+
+render: function(){
+    var self = this;
+    return <div>
+            <ul> {this.props.items.map(function(m,index){
+                var style = '';
+                
+                if(self.state.focused == index){
+                    style = 'focused';
+                }
+
+                return <li className ={style} onClick={self.clicked.bind(self,index)}>
+                {m}</li>;
+                })}
+            </ul>
+        </div>
+}
+
+}); //ends class 
+
+
+React.render(
+    <Menu items={ ['Home', 'Services', 'About', 'Contact us'] } />,
+    document.getElementById("main content")
+);
+</script>
+<body>
+
+
+<div id="main content">
+</div>
+
+</body>
+</html>
